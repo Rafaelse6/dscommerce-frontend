@@ -1,6 +1,6 @@
-import ProductDetails from "./routes/ProductDetails";
+import Catalog from "./routes/Catalog";
 
 function App() {
-  return <ProductDetails />;
+  return <Catalog />;
 }
 export default App;
