@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ClientHome from "./routes/ClientHome";
 import Catalog from "./routes/ClientHome/Catalog";
 import ProductDetails from "./routes/ClientHome/ProductDetails";
@@ -10,8 +10,12 @@ function App() {
         <Route path="/" element={<ClientHome />}>
           <Route index element={<Catalog />} />
           <Route path="catalog" element={<Catalog />} />
-          <Route path="product-details/:productId" element={<ProductDetails />} />
+          <Route
+            path="product-details/:productId"
+            element={<ProductDetails />}
+          />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
