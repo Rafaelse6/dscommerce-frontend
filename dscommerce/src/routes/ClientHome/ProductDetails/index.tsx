@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import ButtonInverse from "../../../components/ButtonInverse";
 import ButtonPrimary from "../../../components/ButtonPrimary";
 import ProductDetailsCard from "../../../components/ProductDetailsCard";
-import * as productService from "../../../services/product-service.ts";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -15,10 +14,12 @@ export default function ProductDetails() {
   const [product, setProduct] = useState<ProductDTO>();
 
   useEffect(() => {
-    axios.get("http://localhost:8080/products/1").then((response) => {
-      console.log(response.data);
-      setProduct(response.data);
-    });
+    axios
+      .get(`http://localhost:8080/products/${params.productId}`)
+      .then((response) => {
+        console.log(response.data);
+        setProduct(response.data);
+      });
   }, []);
 
   return (
