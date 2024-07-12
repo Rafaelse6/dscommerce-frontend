@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ClientHome from "./routes/ClientHome";
 import Catalog from "./routes/ClientHome/Catalog";
 import ProductDetails from "./routes/ClientHome/ProductDetails";
+import Cart from "./routes/ClientHome/Cart";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             path="product-details/:productId"
             element={<ProductDetails />}
           />
+          <Route path="cart" element={<Cart />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
