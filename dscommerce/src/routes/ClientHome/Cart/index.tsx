@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import "./styles.css";
 import * as cartService from "../../../services/cart-service";
 import { OrderDTO, OrderItemDTO } from "../../../models/order";
@@ -20,12 +20,7 @@ const item2: OrderItemDTO = new OrderItemDTO(
 );
 
 export default function Cart() {
-  const cart: OrderDTO = new OrderDTO();
-  useEffect(() => {
-    cart.items.push(item1);
-    cart.items.push(item2);
-    cartService.saveCart(cart);
-  }, []);
+  const [cart, setCart] = useState<OrderDTO>(cartService.getCart());
 
   return (
     <main>
