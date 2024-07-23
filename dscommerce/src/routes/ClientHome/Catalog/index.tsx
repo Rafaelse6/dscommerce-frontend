@@ -5,15 +5,9 @@ import CatalogCard from "../../../components/CatalogCard";
 import SearchBar from "../../../components/SearchBar";
 import "./styles.css";
 import { ProductDTO } from "../../../models/product.ts";
-import { CategoryDTO } from "../../../models/category.ts";
 
 export default function Catalog() {
   const [products, setProducts] = useState<ProductDTO[]>([]);
-
-  const objTest: CategoryDTO = {
-    id: 8,
-    name: "Jardinagem",
-  };
 
   useEffect(() => {
     //localStorage.setItem("minhaCategoria", JSON.stringify(objTest));
@@ -21,7 +15,7 @@ export default function Catalog() {
     const obj = JSON.parse(localStorage.getItem("minhaCat") || "{}");
     console.log(obj);
 
-    productService.findAll().then((response) => {
+    productService.findPageRequest(0, "ma").then((response) => {
       setProducts(response.data.content);
     });
   }, []);
