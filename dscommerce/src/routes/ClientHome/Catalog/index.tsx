@@ -6,24 +6,32 @@ import SearchBar from "../../../components/SearchBar";
 import "./styles.css";
 import { ProductDTO } from "../../../models/product.ts";
 
+type QueryParams = {
+  page: number;
+  name: string;
+};
+
 export default function Catalog() {
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
-  const [productName, setProducName] = useState("");
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: "",
+  });
 
   useEffect(() => {
-    //localStorage.setItem("minhaCategoria", JSON.stringify(objTest));
-
     const obj = JSON.parse(localStorage.getItem("minhaCat") || "{}");
     console.log(obj);
 
-    productService.findPageRequest(0, productName).then((response) => {
-      setProducts(response.data.content);
-    });
-  }, [productName]);
+    productService
+      .findPageRequest(queryParams.page, queryParams.name)
+      .then((response) => {
+        setProducts(response.data.content);
+      });
+  }, [queryParams]);
 
   function handleSearch(searchText: string) {
-    setProducName(searchText);
+    setQueryParams({ ...queryParams, name: searchText });
   }
 
   return (
