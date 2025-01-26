@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ProductDTO } from "../../../models/product.ts";
 import SearchBar from "../../../components/SearchBar/index.tsx";
 import ButtonNextPage from "../../../components/ButtonNextPage/index.tsx";
+import DialogInfo from "../../../components/DialogInfo/index.tsx";
 
 type QueryParams = {
   page: number;
@@ -96,6 +97,7 @@ export default function ProductListing() {
         </table>
         {!isLastPage && <ButtonNextPage onNextPage={handleNextPageClick} />}
       </section>
+      <DialogInfo />
     </main>
   );
 }
